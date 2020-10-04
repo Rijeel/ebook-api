@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Author;
+use JWTAuth;
 
 class AuthorController extends Controller
 {
@@ -20,8 +22,9 @@ class AuthorController extends Controller
             return response(['message' => 'Data not found.', 'data' => $author], 404);
         }
     }
-
-
+    public function __construct(){
+        $this->middleware('auth:api');
+    }
     /**
      * Store a newly created resource in storage.
      *
